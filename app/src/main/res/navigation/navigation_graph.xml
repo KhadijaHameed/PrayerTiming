@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/dashboard">
+
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.sixlogs.workwallet.fragment.dashboard.QazaPrayersRecords"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_today_prayer">
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/brandList"
+        android:name="com.sixlogs.workwallet.fragment.brandList.Brands"
+        android:label="fragment_brand_list"
+        tools:layout="@layout/fragment_qaza_prayer">
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/profile2"
+        android:name="com.sixlogs.workwallet.fragment.profile.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_tasbeehat">
+
+    </fragment>
+
+
+</navigation>
