@@ -4,9 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:gravity="center"
-    android:background="@color/green"
     android:orientation="vertical">
+
+    <ImageView
+        style="@style/iconTodayPrayer"
+        android:layout_marginStart="@dimen/_1sdp"
+        android:src="@drawable/sajda" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/textTodayPrayer"
+            android:layout_marginStart="@dimen/_1sdp"
+            android:fontFamily="@font/lovers_quarrel"
+            android:text="@string/today_prayers"
+            android:textColor="@color/green"
+            android:textSize="@dimen/_35sdp" />
+
+
+    </LinearLayout>
 
     <LinearLayout style="@style/llTodayPrayer">
 
