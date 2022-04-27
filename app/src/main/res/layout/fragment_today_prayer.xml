@@ -1,8 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/green"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout style="@style/llTodayPrayer">
+
+        <ImageView
+            style="@style/iconTodayPrayer"
+            android:src="@drawable/s11" />
+
+        <TextView
+            style="@style/textTodayPrayer"
+            android:text="@string/fajr" />
+
+        <TextView
+            android:id="@+id/fajrr_time"
+            style="@style/timeTodayPrayer" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/llTodayPrayer">
+
+        <ImageView
+            style="@style/iconTodayPrayer"
+            android:src="@drawable/s22" />
+
+        <TextView
+            style="@style/textTodayPrayer"
+            android:text="@string/sunrise" />
+
+        <TextView
+            android:id="@+id/sunrise_time"
+            style="@style/timeTodayPrayer" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/llTodayPrayer">
+
+        <ImageView
+            style="@style/iconTodayPrayer"
+            android:src="@drawable/s3" />
+
+        <TextView
+            style="@style/textTodayPrayer"
+            android:text="@string/dhuhr" />
+
+        <TextView
+            android:id="@+id/dhuhr_time"
+            style="@style/timeTodayPrayer" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/llTodayPrayer">
+
+        <ImageView
+            style="@style/iconTodayPrayer"
+            android:src="@drawable/s4" />
+
+        <TextView
+            style="@style/textTodayPrayer"
+            android:text="@string/asr" />
+
+        <TextView
+            android:id="@+id/asr_time"
+            style="@style/timeTodayPrayer" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/llTodayPrayer">
+
+        <ImageView
+            style="@style/iconTodayPrayer"
+            android:src="@drawable/s5" />
+
+        <TextView
+            style="@style/textTodayPrayer"
+            android:text="@string/maghrib" />
+
+        <TextView
+            android:id="@+id/maghrib_time"
+            style="@style/timeTodayPrayer" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/llTodayPrayer">
+
+        <ImageView
+            style="@style/iconTodayPrayer"
+            android:src="@drawable/s6" />
+
+        <TextView
+            style="@style/textTodayPrayer"
+            android:text="@string/isha" />
+
+        <TextView
+            android:id="@+id/isha_time"
+            style="@style/timeTodayPrayer" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

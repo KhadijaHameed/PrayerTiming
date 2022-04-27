@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">PT</string>
+    <string name="app_name">Prayers</string>
+    <string name="splash_app_name">.⋆︎✩Prayers ｡ﾟ☁\n\n ｡⋆ ｡ ﾟ 🌙 ﾟ ✩｡ ⋆</string>
+    <string name="fajr">Fajr</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="dhuhr">Dhuhr</string>
+    <string name="asr">Asr</string>
+    <string name="maghrib">Maghrib</string>
+    <string name="isha">Isha</string>
 </resources>

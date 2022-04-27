@@ -2,7 +2,7 @@ package com.sixlogs.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.sixlogs.activity.MainActivityViewModel
+import com.sixlogs.pt.MainActivityViewModel
 import com.sixlogs.activity.splash.SplashViewModel
 import com.sixlogs.fragment.qazaPrayersRecords.QazaPrayersRecordsViewModel
 import com.sixlogs.fragment.tasbeehat.TasbeehatViewModel

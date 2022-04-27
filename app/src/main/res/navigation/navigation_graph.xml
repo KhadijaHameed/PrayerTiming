@@ -3,32 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/dashboard">
+    app:startDestination="@id/todayPrayerTiming">
+
 
     <fragment
-        android:id="@+id/dashboard"
-        android:name="com.sixlogs.workwallet.fragment.dashboard.QazaPrayersRecords"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_today_prayer">
-
-
-    </fragment>
-
+        android:id="@+id/todayPrayerTiming"
+        android:name="com.sixlogs.fragment.todayPrayer.TodayPrayerTiming"
+        android:label="TodayPrayerTiming" />
     <fragment
-        android:id="@+id/brandList"
-        android:name="com.sixlogs.workwallet.fragment.brandList.Brands"
-        android:label="fragment_brand_list"
-        tools:layout="@layout/fragment_qaza_prayer">
-
-
-    </fragment>
+        android:id="@+id/qazaPrayersRecords"
+        android:name="com.sixlogs.fragment.qazaPrayersRecords.QazaPrayersRecords"
+        android:label="QazaPrayersRecords" />
     <fragment
-        android:id="@+id/profile2"
-        android:name="com.sixlogs.workwallet.fragment.profile.Profile"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_tasbeehat">
-
-    </fragment>
-
-
+        android:id="@+id/tasbeehat"
+        android:name="com.sixlogs.fragment.tasbeehat.Tasbeehat"
+        android:label="Tasbeehat" />
 </navigation>

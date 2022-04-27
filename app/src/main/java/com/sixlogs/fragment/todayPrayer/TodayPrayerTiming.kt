@@ -7,9 +7,9 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.sixlogs.activity.MainActivity
+import com.sixlogs.pt.MainActivity
+import com.sixlogs.base.BaseFragment
 import com.sixlogs.pt.databinding.FragmentTodayPrayerBinding
-import com.sixlogs.workwallet.base.BaseFragment
 import java.lang.Exception
 
 class TodayPrayerTiming : BaseFragment<FragmentTodayPrayerBinding, TodayPrayerTimingViewModel>(),

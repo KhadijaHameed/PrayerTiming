@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
+        android:id="@+id/nav_today_prayers"
+        android:icon="@drawable/fifth"
         android:title="Today's Prayers" />
 
     <item
-        android:id="@+id/nav_transaction"
-        android:icon="@drawable/ic_home"
+        android:id="@+id/nav_qaza__prayers"
+        android:icon="@drawable/second"
         android:title="Qaza Prayers" />
 
     <!--   <item
@@ -16,8 +16,8 @@
            android:title="" />-->
 
     <item
-        android:id="@+id/nav_wallet"
-        android:icon="@drawable/ic_home"
+        android:id="@+id/nav_tasbeehat"
+        android:icon="@drawable/third"
         android:title="Tasbeehat" />
 
    <!-- <item

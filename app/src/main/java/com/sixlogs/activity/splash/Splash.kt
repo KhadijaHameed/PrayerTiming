@@ -3,7 +3,7 @@ package com.sixlogs.activity.splash
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import com.sixlogs.activity.MainActivity
+import com.sixlogs.pt.MainActivity
 import com.sixlogs.base.BaseActivity
 import com.sixlogs.pt.databinding.ActivitySplashBinding
 
@@ -18,7 +18,7 @@ class Splash: BaseActivity<ActivitySplashBinding, SplashViewModel>() {
     private fun splashThread(){
         object : Thread(){
             override fun run() {
-                sleep(2000)
+                sleep(3000)
                 startMainActivity()
             }
         }.start()

@@ -1,4 +1,4 @@
-package com.sixlogs.activity
+package com.sixlogs.pt
 
 import androidx.lifecycle.ViewModel
 

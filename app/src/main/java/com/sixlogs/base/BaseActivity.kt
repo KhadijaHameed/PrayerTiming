@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.sixlogs.workwallet.base.ViewModelFactory
 
 abstract class BaseActivity<B: ViewBinding, VM: ViewModel>: AppCompatActivity() {
 
