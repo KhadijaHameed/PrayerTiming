@@ -57,4 +57,10 @@
         <item name="android:gravity">center_vertical|end</item>
     </style>
 
+    <style name="MaterialAlertDialogText">
+        <item name="android:textColor">@color/green</item>
+        <item name="fontFamily">@font/akaya_telivigala</item>
+        <item name="android:textSize">18sp</item>
+
+    </style>
 </resources>

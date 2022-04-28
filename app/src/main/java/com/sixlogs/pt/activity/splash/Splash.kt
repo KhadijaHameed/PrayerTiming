@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.sixlogs.pt.MainActivity
 import com.sixlogs.pt.base.BaseActivity
+import com.sixlogs.pt.data.network.TodayPrayerAPI
+import com.sixlogs.pt.data.remoteRepo.AuthRepository
 import com.sixlogs.pt.databinding.ActivitySplashBinding
 
-class Splash: BaseActivity<ActivitySplashBinding, SplashViewModel>() {
+class Splash: BaseActivity<ActivitySplashBinding, SplashViewModel, AuthRepository>() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,14 @@ class Splash: BaseActivity<ActivitySplashBinding, SplashViewModel>() {
     }
 
     override fun getViewModel() = SplashViewModel::class.java
+
+    override fun getRepository(): AuthRepository {
+        return AuthRepository(
+            remoteDataSource.buildApi(
+                TodayPrayerAPI::class.java,
+            )
+        )
+    }
 
 
 }

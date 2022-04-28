@@ -8,4 +8,5 @@
     <string name="maghrib">Maghrib</string>
     <string name="isha">Isha</string>
     <string name="today_prayers">Today\'s Prayers</string>
+    <string name="internnetConnection">Internet not connected..</string>
 </resources>

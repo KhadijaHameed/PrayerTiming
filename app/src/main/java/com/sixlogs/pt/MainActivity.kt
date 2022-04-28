@@ -11,9 +11,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.sixlogs.pt.base.BaseActivity
+import com.sixlogs.pt.data.network.TodayPrayerAPI
+import com.sixlogs.pt.data.remoteRepo.AuthRepository
 import com.sixlogs.pt.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>(){
+class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, AuthRepository>(){
 
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
@@ -73,6 +75,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>(){
     }
 
     override fun getViewModel()= MainActivityViewModel::class.java
+
+    override fun getRepository(): AuthRepository {
+        return AuthRepository(
+            remoteDataSource.buildApi(
+                TodayPrayerAPI::class.java,
+            )
+        )
+    }
 
 
 }

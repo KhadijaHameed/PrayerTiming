@@ -9,10 +9,12 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.sixlogs.pt.MainActivity
 import com.sixlogs.pt.base.BaseFragment
+import com.sixlogs.pt.data.network.TodayPrayerAPI
+import com.sixlogs.pt.data.remoteRepo.AuthRepository
 import com.sixlogs.pt.databinding.FragmentQazaPrayerBinding
 import java.lang.Exception
 
-class QazaPrayersRecords : BaseFragment<FragmentQazaPrayerBinding, QazaPrayersRecordsViewModel>(),
+class QazaPrayersRecords : BaseFragment<FragmentQazaPrayerBinding, QazaPrayersRecordsViewModel, AuthRepository>(),
     View.OnClickListener {
 
     private lateinit var navController: NavController
@@ -43,6 +45,12 @@ class QazaPrayersRecords : BaseFragment<FragmentQazaPrayerBinding, QazaPrayersRe
     }
 
     override fun getViewModel() = QazaPrayersRecordsViewModel::class.java
+
+    override fun getRepository(): AuthRepository {
+        return AuthRepository(
+            remoteDataSource.buildApi(TodayPrayerAPI::class.java)
+        )
+    }
 
     override fun onClick(v: View) {
         when (v.id) {

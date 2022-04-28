@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sixlogs.pt.MainActivityViewModel
 import com.sixlogs.pt.activity.splash.SplashViewModel
+import com.sixlogs.pt.data.remoteRepo.AuthRepository
+import com.sixlogs.pt.data.remoteRepo.BaseRepository
 import com.sixlogs.pt.fragment.qazaPrayersRecords.QazaPrayersRecordsViewModel
 import com.sixlogs.pt.fragment.tasbeehat.TasbeehatViewModel
 import com.sixlogs.pt.fragment.todayPrayer.TodayPrayerTimingViewModel
@@ -11,13 +13,14 @@ import java.lang.IllegalArgumentException
 
 
 class ViewModelFactory(
+    private val repository: BaseRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return when{
                 modelClass.isAssignableFrom(SplashViewModel::class.java) -> SplashViewModel() as T
                 modelClass.isAssignableFrom(MainActivityViewModel::class.java) -> MainActivityViewModel() as T
-                modelClass.isAssignableFrom(TodayPrayerTimingViewModel::class.java) -> TodayPrayerTimingViewModel() as T
+                modelClass.isAssignableFrom(TodayPrayerTimingViewModel::class.java) -> TodayPrayerTimingViewModel(repository as AuthRepository) as T
                 modelClass.isAssignableFrom(QazaPrayersRecordsViewModel::class.java) -> QazaPrayersRecordsViewModel() as T
                 modelClass.isAssignableFrom(TasbeehatViewModel::class.java) -> TasbeehatViewModel() as T
 
