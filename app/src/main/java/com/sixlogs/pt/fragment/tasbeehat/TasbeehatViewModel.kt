@@ -1,4 +1,4 @@
-package com.sixlogs.fragment.tasbeehat
+package com.sixlogs.pt.fragment.tasbeehat
 
 import androidx.lifecycle.ViewModel
 

@@ -1,10 +1,10 @@
-package com.sixlogs.activity.splash
+package com.sixlogs.pt.activity.splash
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.sixlogs.pt.MainActivity
-import com.sixlogs.base.BaseActivity
+import com.sixlogs.pt.base.BaseActivity
 import com.sixlogs.pt.databinding.ActivitySplashBinding
 
 class Splash: BaseActivity<ActivitySplashBinding, SplashViewModel>() {

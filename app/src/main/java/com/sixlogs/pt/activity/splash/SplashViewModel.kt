@@ -1,4 +1,4 @@
-package com.sixlogs.activity.splash
+package com.sixlogs.pt.activity.splash
 
 import androidx.lifecycle.ViewModel
 

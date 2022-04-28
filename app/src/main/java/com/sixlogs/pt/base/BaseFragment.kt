@@ -1,4 +1,4 @@
-package com.sixlogs.base
+package com.sixlogs.pt.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.sixlogs.base.ViewModelFactory
 
 abstract class BaseFragment<B: ViewBinding, VM: ViewModel> :Fragment(){
 

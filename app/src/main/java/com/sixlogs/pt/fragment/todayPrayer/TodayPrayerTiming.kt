@@ -1,4 +1,4 @@
-package com.sixlogs.fragment.todayPrayer
+package com.sixlogs.pt.fragment.todayPrayer
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.sixlogs.pt.MainActivity
-import com.sixlogs.base.BaseFragment
+import com.sixlogs.pt.base.BaseFragment
 import com.sixlogs.pt.databinding.FragmentTodayPrayerBinding
 import java.lang.Exception
 

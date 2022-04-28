@@ -1,4 +1,4 @@
-package com.sixlogs.fragment.qazaPrayersRecords
+package com.sixlogs.pt.fragment.qazaPrayersRecords
 
 import androidx.lifecycle.ViewModel
 

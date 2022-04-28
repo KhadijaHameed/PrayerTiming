@@ -1,4 +1,4 @@
-package com.sixlogs.base
+package com.sixlogs.pt.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,6 +1,5 @@
 package com.sixlogs.pt
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.sixlogs.base.BaseActivity
+import com.sixlogs.pt.base.BaseActivity
 import com.sixlogs.pt.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>(){

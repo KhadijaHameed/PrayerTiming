@@ -1,12 +1,12 @@
-package com.sixlogs.base
+package com.sixlogs.pt.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sixlogs.pt.MainActivityViewModel
-import com.sixlogs.activity.splash.SplashViewModel
-import com.sixlogs.fragment.qazaPrayersRecords.QazaPrayersRecordsViewModel
-import com.sixlogs.fragment.tasbeehat.TasbeehatViewModel
-import com.sixlogs.fragment.todayPrayer.TodayPrayerTimingViewModel
+import com.sixlogs.pt.activity.splash.SplashViewModel
+import com.sixlogs.pt.fragment.qazaPrayersRecords.QazaPrayersRecordsViewModel
+import com.sixlogs.pt.fragment.tasbeehat.TasbeehatViewModel
+import com.sixlogs.pt.fragment.todayPrayer.TodayPrayerTimingViewModel
 import java.lang.IllegalArgumentException
 
 

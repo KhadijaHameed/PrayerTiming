@@ -1,4 +1,4 @@
-package com.sixlogs.fragment.todayPrayer
+package com.sixlogs.pt.fragment.todayPrayer
 
 import androidx.lifecycle.ViewModel
 

@@ -13,7 +13,7 @@
             android:theme="@style/AppTheme" >
         </activity>
 
-        <activity android:name="com.sixlogs.activity.splash.Splash"
+        <activity android:name="com.sixlogs.pt.activity.splash.Splash"
             android:exported="true"
             android:theme="@style/AppTheme" >
             <intent-filter>

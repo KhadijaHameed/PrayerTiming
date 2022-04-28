@@ -8,14 +8,14 @@
 
     <fragment
         android:id="@+id/todayPrayerTiming"
-        android:name="com.sixlogs.fragment.todayPrayer.TodayPrayerTiming"
+        android:name="com.sixlogs.pt.fragment.todayPrayer.TodayPrayerTiming"
         android:label="TodayPrayerTiming" />
     <fragment
         android:id="@+id/qazaPrayersRecords"
-        android:name="com.sixlogs.fragment.qazaPrayersRecords.QazaPrayersRecords"
+        android:name="com.sixlogs.pt.fragment.qazaPrayersRecords.QazaPrayersRecords"
         android:label="QazaPrayersRecords" />
     <fragment
         android:id="@+id/tasbeehat"
-        android:name="com.sixlogs.fragment.tasbeehat.Tasbeehat"
+        android:name="com.sixlogs.pt.fragment.tasbeehat.Tasbeehat"
         android:label="Tasbeehat" />
 </navigation>
