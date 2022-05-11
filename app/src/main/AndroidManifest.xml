@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.sixlogs.pt">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -9,12 +10,14 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/sajda"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PT">
-        <activity android:name=".MainActivity"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.PT"
+        tools:targetApi="m">
+        <activity android:name=".activity.splash.Splash"
             android:theme="@style/AppTheme" >
         </activity>
 
-        <activity android:name="com.sixlogs.pt.activity.splash.Splash"
+        <activity android:name="com.sixlogs.pt.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme" >
             <intent-filter>

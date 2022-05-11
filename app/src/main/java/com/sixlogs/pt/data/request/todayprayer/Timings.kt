@@ -1,6 +1,6 @@
-package com.sixlogs.pt.data.request
+package com.sixlogs.pt.data.request.todayprayer
 
-data class Times(
+data class Timings(
     val Asr: String,
     val Dhuhr: String,
     val Fajr: String,

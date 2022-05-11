@@ -50,9 +50,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/akaya_telivigala</item>
-        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
         <item name="android:textSize">@dimen/_18sdp</item>
-        <item name="android:text">10:05 PM</item>
+        <item name="android:text">....</item>
         <item name="android:layout_marginEnd">@dimen/_40sdp</item>
         <item name="android:gravity">center_vertical|end</item>
     </style>

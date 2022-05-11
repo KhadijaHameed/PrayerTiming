@@ -1,8 +1,11 @@
 package com.sixlogs.pt.fragment.todayPrayer
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -14,12 +17,13 @@ import com.sixlogs.pt.base.util.requestFailed
 import com.sixlogs.pt.data.network.TodayPrayerAPI
 import com.sixlogs.pt.data.remoteRepo.AuthRepository
 import com.sixlogs.pt.data.remoteRepo.Resource
-import com.sixlogs.pt.data.request.Times
-import com.sixlogs.pt.data.request.TodayPrayerResponse
+import com.sixlogs.pt.data.request.todayprayer.Timings
+import com.sixlogs.pt.data.request.todayprayer.TodayPrayerRes
 import com.sixlogs.pt.databinding.FragmentTodayPrayerBinding
 import java.lang.Exception
 
-class TodayPrayerTiming : BaseFragment<FragmentTodayPrayerBinding, TodayPrayerTimingViewModel, AuthRepository>(),
+class TodayPrayerTiming :
+    BaseFragment<FragmentTodayPrayerBinding, TodayPrayerTimingViewModel, AuthRepository>(),
     View.OnClickListener {
 
     private lateinit var navController: NavController
@@ -38,15 +42,21 @@ class TodayPrayerTiming : BaseFragment<FragmentTodayPrayerBinding, TodayPrayerTi
 
         sendTimeRequest()
         viewModel.todayRes.observe(viewLifecycleOwner, Observer {
-            when(it){
-                is Resource.Success ->{
+            binding.sk.visibility = GONE
+            when (it) {
+                is Resource.Success -> {
+                    Log.d("test", "code ${it.value.code} ${it.value.data}")
                     handleResponse(it.value)
                 }
-                is Resource.Failure ->{
+                is Resource.Failure -> {
+                    Log.d("test", "code error 404  ${it.errorCode.toString()}")
                     requestFailed(it, binding.todaysContainer)
 
                 }
             }
+            /*  }else{
+                  Log.d("test", "code error   ${it.data.toString()}")
+              }*/
         })
 
     }
@@ -56,32 +66,39 @@ class TodayPrayerTiming : BaseFragment<FragmentTodayPrayerBinding, TodayPrayerTi
     }
 
 
-    private fun handleResponse(response: TodayPrayerResponse) {
-        if (response!=null){
-        if ( response.code==200) {
+    @SuppressLint("SetTextI18n")
+    private fun handleResponse(response: TodayPrayerRes) {
+        if (response != null) {
+
 //            response.results.datetime.get(0).date
-            val namazTimeLists = response.results.datetime[0].times
+            val namazTimeLists = response.data.timings
+            val day = response.data.date.hijri.day
+            val month = response.data.date.hijri.month.ar
+            val year = response.data.date.hijri.year
+            val hijri = " $day $month $year"
+            binding.todayHijriDate.text = "\uD83C\uDF19$hijri"
+            binding.todayEnDate.text = "~${response.data.date.readable}~"
             setTime(namazTimeLists)
-        }
+
 
         }
-       /* val userId = ApplicationSetting(requireActivity()).getUserId()
+        /* val userId = ApplicationSetting(requireActivity()).getUserId()
 
-        val cardDetail: GetCardDetailResponse = value
+         val cardDetail: GetCardDetailResponse = value
 
-        if (cardDetail != null) {
-            val cardDetailEntity = CardDetailsEntity(
-                0,
-                userId!!.toInt(),
-                cardDetail.brand,
-                cardDetail.cardId,
-                cardDetail.expirationMonth,
-                cardDetail.expirationYear,
-                cardDetail.last4)
-            val database = HomeQDatabase.getAppDatabase(requireContext())
-            database.cardDetailDao().insertCardDetails(cardDetailEntity)
+         if (cardDetail != null) {
+             val cardDetailEntity = CardDetailsEntity(
+                 0,
+                 userId!!.toInt(),
+                 cardDetail.brand,
+                 cardDetail.cardId,
+                 cardDetail.expirationMonth,
+                 cardDetail.expirationYear,
+                 cardDetail.last4)
+             val database = HomeQDatabase.getAppDatabase(requireContext())
+             database.cardDetailDao().insertCardDetails(cardDetailEntity)
 
-        }*/
+         }*/
     }
 
 
@@ -90,7 +107,7 @@ class TodayPrayerTiming : BaseFragment<FragmentTodayPrayerBinding, TodayPrayerTi
     }
 
 
-    private fun setTime(time: Times) {
+    private fun setTime(time: Timings) {
         binding.fajrrTime.text = time.Fajr
         binding.sunriseTime.text = time.Sunrise
         binding.dhuhrTime.text = time.Dhuhr
@@ -117,9 +134,9 @@ class TodayPrayerTiming : BaseFragment<FragmentTodayPrayerBinding, TodayPrayerTi
     }
 
     override fun getRepository(): AuthRepository {
-       return AuthRepository(
+        return AuthRepository(
             remoteDataSource.buildApi(TodayPrayerAPI::class.java)
-       )
+        )
     }
 
 

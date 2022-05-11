@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/todays_container"
@@ -9,123 +9,174 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <ImageView
-        style="@style/iconTodayPrayer"
-        android:layout_marginStart="@dimen/_1sdp"
-        android:src="@drawable/sajda" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/textTodayPrayer"
+        <ImageView
+            style="@style/iconTodayPrayer"
             android:layout_marginStart="@dimen/_1sdp"
-            android:fontFamily="@font/lovers_quarrel"
-            android:text="@string/today_prayers"
-            android:textColor="@color/green"
-            android:textSize="@dimen/_35sdp" />
+            android:src="@drawable/sajda" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/textTodayPrayer"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:fontFamily="@font/lovers_quarrel"
+                android:text="@string/today_prayers"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_35sdp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/llTodayPrayer">
+
+            <ImageView
+                style="@style/iconTodayPrayer"
+                android:src="@drawable/s11" />
+
+            <TextView
+                style="@style/textTodayPrayer"
+                android:text="@string/fajr" />
+
+            <TextView
+                android:id="@+id/fajrr_time"
+                style="@style/timeTodayPrayer" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/llTodayPrayer">
+
+            <ImageView
+                style="@style/iconTodayPrayer"
+                android:src="@drawable/s22" />
+
+            <TextView
+                style="@style/textTodayPrayer"
+                android:text="@string/sunrise" />
+
+            <TextView
+                android:id="@+id/sunrise_time"
+                style="@style/timeTodayPrayer" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/llTodayPrayer">
+
+            <ImageView
+                style="@style/iconTodayPrayer"
+                android:src="@drawable/s3" />
+
+            <TextView
+                style="@style/textTodayPrayer"
+                android:text="@string/dhuhr" />
+
+            <TextView
+                android:id="@+id/dhuhr_time"
+                style="@style/timeTodayPrayer" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/llTodayPrayer">
+
+            <ImageView
+                style="@style/iconTodayPrayer"
+                android:src="@drawable/s4" />
+
+            <TextView
+                style="@style/textTodayPrayer"
+                android:text="@string/asr" />
+
+            <TextView
+                android:id="@+id/asr_time"
+                style="@style/timeTodayPrayer" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/llTodayPrayer">
+
+            <ImageView
+                style="@style/iconTodayPrayer"
+                android:src="@drawable/s5" />
+
+            <TextView
+                style="@style/textTodayPrayer"
+                android:text="@string/maghrib" />
+
+            <TextView
+                android:id="@+id/maghrib_time"
+                style="@style/timeTodayPrayer" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/llTodayPrayer">
+
+            <ImageView
+                style="@style/iconTodayPrayer"
+                android:src="@drawable/s6" />
+
+            <TextView
+                style="@style/textTodayPrayer"
+                android:text="@string/isha" />
+
+            <TextView
+                android:id="@+id/isha_time"
+                style="@style/timeTodayPrayer" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/llTodayPrayer">
+
+            <TextView
+                style="@style/textTodayPrayer"
+                android:text="@string/today"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/today_en_date"
+                style="@style/timeTodayPrayer"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/llTodayPrayer">
+
+            <TextView
+                style="@style/textTodayPrayer"
+                android:text="@string/today"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/today_hijri_date"
+                style="@style/timeTodayPrayer"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout style="@style/llTodayPrayer">
-
-        <ImageView
-            style="@style/iconTodayPrayer"
-            android:src="@drawable/s11" />
-
-        <TextView
-            style="@style/textTodayPrayer"
-            android:text="@string/fajr" />
-
-        <TextView
-            android:id="@+id/fajrr_time"
-            style="@style/timeTodayPrayer" />
-
-    </LinearLayout>
-
-    <LinearLayout style="@style/llTodayPrayer">
-
-        <ImageView
-            style="@style/iconTodayPrayer"
-            android:src="@drawable/s22" />
-
-        <TextView
-            style="@style/textTodayPrayer"
-            android:text="@string/sunrise" />
-
-        <TextView
-            android:id="@+id/sunrise_time"
-            style="@style/timeTodayPrayer" />
-
-    </LinearLayout>
-
-    <LinearLayout style="@style/llTodayPrayer">
-
-        <ImageView
-            style="@style/iconTodayPrayer"
-            android:src="@drawable/s3" />
-
-        <TextView
-            style="@style/textTodayPrayer"
-            android:text="@string/dhuhr" />
-
-        <TextView
-            android:id="@+id/dhuhr_time"
-            style="@style/timeTodayPrayer" />
-
-    </LinearLayout>
-
-    <LinearLayout style="@style/llTodayPrayer">
-
-        <ImageView
-            style="@style/iconTodayPrayer"
-            android:src="@drawable/s4" />
-
-        <TextView
-            style="@style/textTodayPrayer"
-            android:text="@string/asr" />
-
-        <TextView
-            android:id="@+id/asr_time"
-            style="@style/timeTodayPrayer" />
-
-    </LinearLayout>
-
-    <LinearLayout style="@style/llTodayPrayer">
-
-        <ImageView
-            style="@style/iconTodayPrayer"
-            android:src="@drawable/s5" />
-
-        <TextView
-            style="@style/textTodayPrayer"
-            android:text="@string/maghrib" />
-
-        <TextView
-            android:id="@+id/maghrib_time"
-            style="@style/timeTodayPrayer" />
-
-    </LinearLayout>
-
-    <LinearLayout style="@style/llTodayPrayer">
-
-        <ImageView
-            style="@style/iconTodayPrayer"
-            android:src="@drawable/s6" />
-
-        <TextView
-            style="@style/textTodayPrayer"
-            android:text="@string/isha" />
-
-        <TextView
-            android:id="@+id/isha_time"
-            style="@style/timeTodayPrayer" />
-
-    </LinearLayout>
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/sk"
+        style="@style/SpinKitView.Large.WanderingCubes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/_3sdp"
+        app:SpinKit_Color="@android:color/holo_red_dark"
+        android:visibility="visible"/>
 
 
-</LinearLayout>
+</RelativeLayout>
