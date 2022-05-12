@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_menu"
+                android:visibility="invisible"
                 app:itemIconTint="@color/bnv_tab_item_foreground"
                 app:itemTextColor="@color/bnv_tab_item_foreground"/>
 
