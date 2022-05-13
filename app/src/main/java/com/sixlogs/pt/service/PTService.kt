@@ -1,14 +1,16 @@
 package com.sixlogs.pt.service
 
+import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Context.ALARM_SERVICE
 import android.content.Intent
 import android.net.Uri
+import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.sixlogs.pt.MainActivity
@@ -63,11 +65,13 @@ class PTService(
 
 
     fun reminderNotification() {
+        
+//        val currentTime = System.currentTimeMillis()
+//        val tenSeconds = (1000 * 10).toLong()
+//        val triggerReminder = currentTime + tenSeconds //triggers a reminder after 10 seconds.
         val notificationUtils = NotificationUtils( context)
-        val currentTime = System.currentTimeMillis()
-        val tenSeconds = (1000 * 10).toLong()
-        val triggerReminder = currentTime + tenSeconds //triggers a reminder after 10 seconds.
-        notificationUtils.setReminder(triggerReminder,18,0,0)
+        notificationUtils.setReminder(16,26,0)
+
     }
 
 

@@ -21,6 +21,7 @@ import com.sixlogs.pt.service.PTService
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, AuthRepository>(){
@@ -48,7 +49,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, Au
         val _currentTime = System.currentTimeMillis()
         val tenSeconds = (1000 * 10).toLong()
         val _triggerReminder = _currentTime + tenSeconds //triggers a reminder after 10 seconds.
-        _notificationUtils.setReminder(_triggerReminder,16,54,0)
+        _notificationUtils.setReminder(10,27,0)
     }
 
 
@@ -75,6 +76,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, Au
 
    private  fun startBackgroundJob() {
         val uploadWorkRequest: WorkRequest = OneTimeWorkRequestBuilder<PTService>().build()
+       //val uploadWorkRequest: PeriodicWorkRequest.Builder = PeriodicWorkRequestBuilder<PTService>()
+      // (1, TimeUnit.HOURS, 15, TimeUnit.MINUTES).build()
         WorkManager.getInstance(this).enqueue(uploadWorkRequest)
     }
 
