@@ -32,7 +32,12 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".service.ReminderBroadcast" />
+        <receiver android:name=".service.ReminderBroadcast"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.android.receivers.AlarmReceiver" />
+            </intent-filter>
+        </receiver>
 
 
         <meta-data

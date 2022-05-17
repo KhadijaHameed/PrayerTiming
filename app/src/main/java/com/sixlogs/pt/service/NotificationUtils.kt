@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.sixlogs.pt.MainActivity
 import java.util.*
 
 
@@ -25,11 +26,19 @@ class NotificationUtils(base: Context?) : ContextWrapper(base) {
     }
 
     fun setNotification(title: String?, body: String?): NotificationCompat.Builder? {
+
+
+        val alarmIntent  = Intent(applicationContext, MainActivity::class.java)
+        var  p_i_1 = PendingIntent.getActivity(applicationContext, 12, alarmIntent,
+//            PendingIntent.FLAG_ONE_SHOT)
+            PendingIntent.FLAG_UPDATE_CURRENT)
+
         return NotificationCompat.Builder(this, "1")
             .setSmallIcon(R.drawable.btn_minus)
             .setContentTitle(title)
             .setContentText(body)
             .setAutoCancel(true)
+            .setContentIntent(p_i_1)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
     }
 
@@ -69,15 +78,12 @@ class NotificationUtils(base: Context?) : ContextWrapper(base) {
         val alarmManager = getSystemService(ALARM_SERVICE)as AlarmManager?
         val alarmIntent  = Intent(applicationContext, ReminderBroadcast::class.java)
         alarmIntent.putExtra("count","mint:$m sec$s ")
-        alarmIntent.putExtra("pt","fajr")  //
-   //     alarmIntent.putExtra("intcid",1)
-//
-        val intent_id = System.currentTimeMillis().toInt()
-        val pendingIntent = PendingIntent.getBroadcast(applicationContext, 12, alarmIntent,
+        alarmIntent.putExtra("pt","fajr") 
+       var  pendingIntent1 = PendingIntent.getBroadcast(applicationContext, 12, alarmIntent,
 //            PendingIntent.FLAG_ONE_SHOT)
             PendingIntent.FLAG_UPDATE_CURRENT);
         alarmIntent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-        alarmManager!!.cancel(pendingIntent)
+       // alarmManager!!.cancel(pendingIntent1)
 
 
       val alarmStartTime: Calendar = Calendar.getInstance()
@@ -93,7 +99,8 @@ class NotificationUtils(base: Context?) : ContextWrapper(base) {
         }
 
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+       // alarmManager!!.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent1);
+        alarmManager!!.set(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), pendingIntent1);
 
     }
     fun setReminder2(h: Int, m: Int, s: Int) {
@@ -119,7 +126,7 @@ class NotificationUtils(base: Context?) : ContextWrapper(base) {
 //            PendingIntent.FLAG_ONE_SHOT)
             PendingIntent.FLAG_UPDATE_CURRENT);
         alarmIntent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-        alarmManager!!.cancel(pendingIntent)
+     //   alarmManager!!.cancel(pendingIntent)
 
 
       val alarmStartTime: Calendar = Calendar.getInstance()
@@ -135,7 +142,8 @@ class NotificationUtils(base: Context?) : ContextWrapper(base) {
         }
 
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+       // alarmManager!!.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager!!.set(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), pendingIntent);
 
     }
 }
