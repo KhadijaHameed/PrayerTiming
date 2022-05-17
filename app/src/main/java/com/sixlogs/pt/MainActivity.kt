@@ -12,12 +12,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.work.*
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.sixlogs.homeq.applicationsetting.ApplicationSetting
 import com.sixlogs.pt.base.BaseActivity
 import com.sixlogs.pt.data.network.TodayPrayerAPI
 import com.sixlogs.pt.data.remoteRepo.AuthRepository
 import com.sixlogs.pt.databinding.ActivityMainBinding
 import com.sixlogs.pt.service.NotificationUtils
 import com.sixlogs.pt.service.PTService
+import com.sixlogs.pt.storage.PTPreferences
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -29,15 +31,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, Au
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
     lateinit var bottomAppBar: BottomAppBar
-    val TAG = "PT"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initUI()
         navigationTextFont(binding.bottomNavigation)
-        GlobalScope.launch {
-            check(TAG)
-        }
+
        // reminderNotification()
 
 
@@ -47,33 +47,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, Au
 
 
 
-    suspend fun check(workName: String) {
-        Log.d(TAG, "check: $workName")
-        val workManager = WorkManager.getInstance()
-        val workInfos = workManager.getWorkInfosForUniqueWork(workName).await()
-        if (workInfos.size == 1) {
-            val workInfo = workInfos[0]
-
-            if (workInfo.state == WorkInfo.State.BLOCKED || workInfo.state == WorkInfo.State.ENQUEUED || workInfo.state == WorkInfo.State.RUNNING) {
-                Log.d(TAG, "check isAlive")
-            } else {
-                Log.d(TAG, "check isDead")
-                startBackgroundJob()
-
-            }
-        } else {
-            Log.d(TAG, "check notFound")
-            startBackgroundJob()
-            //  Timber.d("notFound")
-        }
-    }
-
-   private  fun startBackgroundJob() {
-        val uploadWorkRequest: WorkRequest = OneTimeWorkRequestBuilder<PTService>().build()
-       //val uploadWorkRequest: PeriodicWorkRequest.Builder = PeriodicWorkRequestBuilder<PTService>()
-      // (1, TimeUnit.HOURS, 15, TimeUnit.MINUTES).build()
-        WorkManager.getInstance(this).enqueue(uploadWorkRequest)
-    }
 
     private fun initUI(){
         bottomAppBar = findViewById(R.id.bottomAppBar)

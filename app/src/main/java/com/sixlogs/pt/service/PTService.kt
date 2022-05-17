@@ -30,6 +30,11 @@ class PTService(
 
     val TAG = "TimeService"
 
+    val nmzList = arrayListOf("Fajar", "Duhar", "Asar" , "Maghrib", "Isha")
+    val hourList = arrayListOf<Int>()
+    val mintList = arrayListOf<Int>()
+    val secondList = arrayListOf(0,0,0,0,0)
+
     override fun doWork(): Result {
         Log.w(TAG, "doWork: background work started... ")
         try {
@@ -49,16 +54,49 @@ class PTService(
     @Throws(IOException::class)
     @Synchronized
     suspend fun getDbRecord() {
+
+        //5 times
+        var fjr = PTPreferences(context).getStringValue(ApplicationSetting.FAJAR)
+        var duhar = PTPreferences(context).getStringValue(ApplicationSetting.DUHAR)
+        var asar = PTPreferences(context).getStringValue(ApplicationSetting.ASAR)
+        var maghrib = PTPreferences(context).getStringValue(ApplicationSetting.MAGHRIB)
+        var isha = PTPreferences(context).getStringValue(ApplicationSetting.ISHA)
+       // hours
+        var fjrHour: Int  = fjr.toString().split(":")[0].toInt()
+        var duharHour: Int  = duhar.toString().split(":")[0].toInt()
+        var asarHour: Int  = asar.toString().split(":")[0].toInt()
+        var maghribHour: Int  = maghrib.toString().split(":")[0].toInt()
+        var ishaHour: Int  = isha.toString().split(":")[0].toInt()
+       // minutes
+        var fjrMinute: Int  = fjr.toString().split(":")[1].toInt()
+        var duharMinute: Int  = duhar.toString().split(":")[1].toInt()
+        var asarMinute: Int  = asar.toString().split(":")[1].toInt()
+        var maghribMinute: Int  = maghrib.toString().split(":")[1].toInt()
+        var ishaMinute: Int  = isha.toString().split(":")[1].toInt()
+
+       // hour list
+        hourList.add(fjrHour)
+        hourList.add(duharHour)
+        hourList.add(asarHour)
+        hourList.add(maghribHour)
+        hourList.add(ishaHour)
+        //minute list
+        mintList.add(fjrMinute)
+        mintList.add(duharMinute)
+        mintList.add(asarMinute)
+        mintList.add(maghribMinute)
+        mintList.add(ishaMinute)
+
+        Log.d("test", "hourLIST $hourList")
+        Log.d("test", "mintLIST $mintList")
         reminderNotification()
-        showNotification("separeONe", "first")
+
     }
 
-    val nmzList = arrayListOf("Fajar", "Duhar", "Asar" , "Maghrib", "Isha")
-    val hourList = arrayListOf(16,16,16,16,16)
-//    val mintList = arrayListOf(1,3,3,4,5)
-    val mintList = arrayListOf(54,55,56,57,58)
-    val secondList = arrayListOf(0,0,0,0,0)
- //   val secondList = arrayListOf(0,15,30,45,59)
+//    val hourList = arrayListOf(16,16,16,16,16)
+//    val mintList = arrayListOf(54,55,56,57,58)
+//    val secondList = arrayListOf(0,0,0,0,0)
+
     private fun reminderNotification() {
 
         
