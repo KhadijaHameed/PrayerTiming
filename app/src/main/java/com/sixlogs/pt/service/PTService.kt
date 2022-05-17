@@ -42,6 +42,7 @@ class PTService(
                 }.start()
 
             }
+            //showNotification_("WorkWallet?test", notificationMessage)
         } catch (e: Exception) {
             e.printStackTrace()
             Result.retry()
@@ -62,40 +63,31 @@ class PTService(
 //        }
     }
 
-
-
-    fun reminderNotification() {
+    private fun reminderNotification() {
         
 //        val currentTime = System.currentTimeMillis()
 //        val tenSeconds = (1000 * 10).toLong()
 //        val triggerReminder = currentTime + tenSeconds //triggers a reminder after 10 seconds.
         val notificationUtils = NotificationUtils( context)
-        notificationUtils.setReminder(16,26,0)
+        notificationUtils.setReminder(11,9,0)
+     //   val notificationUtils2 = NotificationUtils( context)
+        notificationUtils.setReminder2(11,10,0)
 
     }
 
 
 
-    /*private fun notifyingActivityServiceIsCompletedDoProcessyourWork() {
-        val intent = Intent("FileCompleted")
-        //   intent.setAction("FileCompleted")
-        intent.putExtra("file", "Yeaa all file completed...!")
-        LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
-    }*/
+    fun playNotificationSound() {
+      /*  try {
+            val sourd2 = RingtoneManager.getRingtone(
+                this.applicationContext,
+            //    Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + this.packageName + "/" + R.raw.notification))
+//            sourd2.play()
+        } catch (ex: Exception) {
 
-
-    @Throws(IOException::class)
-    @Synchronized
-    private fun sendServerRequest() {
-        try {
-
-            notificationMessage = " successfully updated..!"
-
-        } catch (ex: java.lang.Exception) {
-            ex.printStackTrace()
-        }
-
+        }*/
     }
+
 
     fun showNotification(title: String, message: String) {
         val intent: Intent = Intent(context, MainActivity::class.java).apply {
@@ -119,6 +111,7 @@ class PTService(
             .setContentIntent(pendingIntent)
             .setAutoCancel(true).build()
         manager.notify(getRandomNumber(), builder)
+//        playNotificationSound()
     }
 
 

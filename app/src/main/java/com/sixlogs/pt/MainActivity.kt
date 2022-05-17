@@ -44,13 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, Au
     }
 
 
-    fun reminderNotification() {
-        val _notificationUtils = NotificationUtils( this)
-        val _currentTime = System.currentTimeMillis()
-        val tenSeconds = (1000 * 10).toLong()
-        val _triggerReminder = _currentTime + tenSeconds //triggers a reminder after 10 seconds.
-        _notificationUtils.setReminder(10,27,0)
-    }
+
 
 
     suspend fun check(workName: String) {
