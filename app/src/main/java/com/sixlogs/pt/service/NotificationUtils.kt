@@ -29,9 +29,7 @@ class NotificationUtils(base: Context?) : ContextWrapper(base) {
 
 
         val alarmIntent  = Intent(applicationContext, MainActivity::class.java)
-        var  p_i_1 = PendingIntent.getActivity(applicationContext, 12, alarmIntent,
-//            PendingIntent.FLAG_ONE_SHOT)
-            PendingIntent.FLAG_UPDATE_CURRENT)
+        val  p_i_1 = PendingIntent.getActivity(applicationContext, 12, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         return NotificationCompat.Builder(this, "1")
             .setSmallIcon(R.drawable.btn_minus)
@@ -63,87 +61,57 @@ class NotificationUtils(base: Context?) : ContextWrapper(base) {
     }
 
     var a = 1
-    fun setReminder(h: Int, m: Int, s: Int) {
-       /* val _intent = Intent(applicationContext, ReminderBroadcast::class.java)
-        val _pendingIntent = PendingIntent.getBroadcast(applicationContext, 0, _intent, 0)
-        val _alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager?
-        _alarmManager!![AlarmManager.RTC_WAKEUP, timeInMillis] = _pendingIntent*/
+    fun setReminder(h: Int, m: Int, s: Int, nmzName: String, reqCode: Int) {
 
-        Log.d("Hey","var hour $h minute $m second $s" )
+//        Log.d("Hey","var hour $h minute $m second $s nmz $nmzName  reqCode $reqCode" )
+        Log.d("Hey","var $h:$m:0$s  nmz$nmzName  reqCode $reqCode" )
 
-        var hour = h
-        var mint = m
-        var second = s
-        //
         val alarmManager = getSystemService(ALARM_SERVICE)as AlarmManager?
         val alarmIntent  = Intent(applicationContext, ReminderBroadcast::class.java)
         alarmIntent.putExtra("count","mint:$m sec$s ")
-        alarmIntent.putExtra("pt","fajr") 
-       var  pendingIntent1 = PendingIntent.getBroadcast(applicationContext, 12, alarmIntent,
-//            PendingIntent.FLAG_ONE_SHOT)
-            PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmIntent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-       // alarmManager!!.cancel(pendingIntent1)
+        alarmIntent.putExtra("pt",nmzName)
+        val pendingIntent1 = PendingIntent.getBroadcast(applicationContext, reqCode, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmIntent.data = (Uri.parse("custom://"+System.currentTimeMillis()));
 
-
-      val alarmStartTime: Calendar = Calendar.getInstance()
+       val alarmStartTime: Calendar = Calendar.getInstance()
         val now: Calendar = Calendar.getInstance()
-        alarmStartTime.set(Calendar.HOUR_OF_DAY, hour)
-        alarmStartTime.set(Calendar.MINUTE, mint)
-        alarmStartTime.set(Calendar.SECOND, second)
-
+        alarmStartTime.set(Calendar.HOUR_OF_DAY, h)
+        alarmStartTime.set(Calendar.MINUTE, m)
+        alarmStartTime.set(Calendar.SECOND, s)
 
         if (now.after(alarmStartTime)) {
-            Log.d("Hey", "Added a day $a")
+            Log.d("Hey", "Added a day $a$reqCode")
             alarmStartTime.add(Calendar.DATE, 1)
         }
 
-
-       // alarmManager!!.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent1);
-        alarmManager!!.set(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), pendingIntent1);
-
+        alarmManager!!.set(AlarmManager.RTC_WAKEUP, alarmStartTime.timeInMillis, pendingIntent1);
     }
-    fun setReminder2(h: Int, m: Int, s: Int) {
-       /* val _intent = Intent(applicationContext, ReminderBroadcast::class.java)
-        val _pendingIntent = PendingIntent.getBroadcast(applicationContext, 0, _intent, 0)
-        val _alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager?
-        _alarmManager!![AlarmManager.RTC_WAKEUP, timeInMillis] = _pendingIntent*/
 
-        Log.d("Hey","var hour $h minute $m second $s" )
+    fun setReminder2(h: Int, m: Int, s: Int, nmzName: String, ) {
 
-        var hour = h
-        var mint = m
-        var second = s
-        //
+        Log.d("Hey","var hour $h minute $m second $s nmz $nmzName" )
+
         val alarmManager = getSystemService(ALARM_SERVICE)as AlarmManager?
         val alarmIntent  = Intent(applicationContext, ReminderBroadcast::class.java)
         alarmIntent.putExtra("count","mint:$m sec$s ")
-        alarmIntent.putExtra("pt","dhr")
-       //alarmIntent.putExtra("intcid",2)
+        alarmIntent.putExtra("pt",nmzName)
 
         val intent_id = System.currentTimeMillis().toInt()
-        val pendingIntent = PendingIntent.getBroadcast(applicationContext, 13, alarmIntent,
-//            PendingIntent.FLAG_ONE_SHOT)
-            PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmIntent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-     //   alarmManager!!.cancel(pendingIntent)
+        val pendingIntent = PendingIntent.getBroadcast(applicationContext, 13, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmIntent.data = (Uri.parse("custom://"+System.currentTimeMillis()));
 
-
-      val alarmStartTime: Calendar = Calendar.getInstance()
+       val alarmStartTime: Calendar = Calendar.getInstance()
         val now: Calendar = Calendar.getInstance()
-        alarmStartTime.set(Calendar.HOUR_OF_DAY, hour)
-        alarmStartTime.set(Calendar.MINUTE, mint)
-        alarmStartTime.set(Calendar.SECOND, second)
-
+        alarmStartTime.set(Calendar.HOUR_OF_DAY, h)
+        alarmStartTime.set(Calendar.MINUTE, m)
+        alarmStartTime.set(Calendar.SECOND, s)
 
         if (now.after(alarmStartTime)) {
             Log.d("Hey", "Added a day $a")
             alarmStartTime.add(Calendar.DATE, 1)
         }
 
-
-       // alarmManager!!.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        alarmManager!!.set(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), pendingIntent);
+        alarmManager!!.set(AlarmManager.RTC_WAKEUP, alarmStartTime.timeInMillis, pendingIntent);
 
     }
 }

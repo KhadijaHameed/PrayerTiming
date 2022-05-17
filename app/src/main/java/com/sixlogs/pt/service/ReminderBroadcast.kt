@@ -11,7 +11,7 @@ class ReminderBroadcast : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
 
-        var time = " ${intent?.getStringExtra("pt")}"
+      var time = " ${intent?.getStringExtra("pt")}"
 
       //    if (time == "fajr") {
         val _notificationUtils = NotificationUtils(context)

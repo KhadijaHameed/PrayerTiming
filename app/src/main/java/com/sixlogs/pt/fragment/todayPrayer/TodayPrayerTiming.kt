@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.sixlogs.homeq.applicationsetting.ApplicationSetting
 import com.sixlogs.pt.MainActivity
 import com.sixlogs.pt.base.BaseFragment
 import com.sixlogs.pt.base.util.requestFailed
@@ -20,6 +21,7 @@ import com.sixlogs.pt.data.remoteRepo.Resource
 import com.sixlogs.pt.data.request.todayprayer.Timings
 import com.sixlogs.pt.data.request.todayprayer.TodayPrayerRes
 import com.sixlogs.pt.databinding.FragmentTodayPrayerBinding
+import com.sixlogs.pt.storage.PTPreferences
 import java.lang.Exception
 
 class TodayPrayerTiming :
@@ -114,6 +116,14 @@ class TodayPrayerTiming :
         binding.asrTime.text = time.Asr
         binding.maghribTime.text = time.Maghrib
         binding.ishaTime.text = time.Isha
+
+        //add into preferences
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.FAJAR, time.Fajr)
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.DUHAR, time.Dhuhr)
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.ASAR, time.Asr)
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.MAGHRIB, time.Maghrib)
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.ISHA, time.Isha)
+
     }
 
     override fun getFragmentBinding(

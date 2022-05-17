@@ -1,20 +1,19 @@
 package com.sixlogs.pt.service
 
-import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.ContentResolver
 import android.content.Context
-import android.content.Context.ALARM_SERVICE
 import android.content.Intent
 import android.net.Uri
-import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.sixlogs.homeq.applicationsetting.ApplicationSetting
 import com.sixlogs.pt.MainActivity
 import com.sixlogs.pt.R
+import com.sixlogs.pt.storage.PTPreferences
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -30,8 +29,6 @@ class PTService(
 ) : Worker(context, params) {
 
     val TAG = "TimeService"
-    private var notificationMessage = "TimeService successfully uploaded...!"
-
 
     override fun doWork(): Result {
         Log.w(TAG, "doWork: background work started... ")
@@ -42,8 +39,7 @@ class PTService(
                 }.start()
 
             }
-            //showNotification_("WorkWallet?test", notificationMessage)
-        } catch (e: Exception) {
+         } catch (e: Exception) {
             e.printStackTrace()
             Result.retry()
         }
@@ -54,35 +50,40 @@ class PTService(
     @Synchronized
     suspend fun getDbRecord() {
         reminderNotification()
-//        val db = HomeQDatabase.getAppDatabase(context)
-//        val flagList = db.homeOwnerFlag().getAllFlags()
-//        for (item in flagList) {
-//           if(item.status == 5){
-     //   sendServerRequest()
-//            }
-//        }
+        showNotification("separeONe", "first")
     }
 
+    val nmzList = arrayListOf("Fajar", "Duhar", "Asar" , "Maghrib", "Isha")
+    val hourList = arrayListOf(16,16,16,16,16)
+//    val mintList = arrayListOf(1,3,3,4,5)
+    val mintList = arrayListOf(54,55,56,57,58)
+    val secondList = arrayListOf(0,0,0,0,0)
+ //   val secondList = arrayListOf(0,15,30,45,59)
     private fun reminderNotification() {
+
         
-//        val currentTime = System.currentTimeMillis()
-//        val tenSeconds = (1000 * 10).toLong()
-//        val triggerReminder = currentTime + tenSeconds //triggers a reminder after 10 seconds.
-        val notificationUtils = NotificationUtils( context)
-        notificationUtils.setReminder(11,9,0)
-     //   val notificationUtils2 = NotificationUtils( context)
-        notificationUtils.setReminder2(11,10,0)
+        val notificationUtils = NotificationUtils(context)
+        for (i in 0 until nmzList.size) {
+            when(i){
+                0 -> notificationUtils.setReminder(hourList[i],mintList[i],secondList[i],nmzList[i],i )
+                1 -> notificationUtils.setReminder(hourList[i],mintList[i],secondList[i],nmzList[i],i )
+                2 -> notificationUtils.setReminder(hourList[i],mintList[i],secondList[i],nmzList[i], i)
+                3 -> notificationUtils.setReminder(hourList[i],mintList[i],secondList[i],nmzList[i], i)
+                4 -> notificationUtils.setReminder(hourList[i],mintList[i],secondList[i],nmzList[i], i)
 
+            }
+
+        }
+        
+//        notificationUtils.setReminder3(14,6,0)
     }
-
-
 
     fun playNotificationSound() {
       /*  try {
-            val sourd2 = RingtoneManager.getRingtone(
+            val sourd3 = RingtoneManager.getRingtone(
                 this.applicationContext,
             //    Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + this.packageName + "/" + R.raw.notification))
-//            sourd2.play()
+//            sourd3.play()
         } catch (ex: Exception) {
 
         }*/
