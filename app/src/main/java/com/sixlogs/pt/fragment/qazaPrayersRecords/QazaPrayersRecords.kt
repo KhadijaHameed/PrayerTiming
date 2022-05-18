@@ -7,7 +7,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.sixlogs.pt.MainActivity
+import com.sixlogs.pt.activity.MainActivity
 import com.sixlogs.pt.base.BaseFragment
 import com.sixlogs.pt.data.network.TodayPrayerAPI
 import com.sixlogs.pt.data.remoteRepo.AuthRepository

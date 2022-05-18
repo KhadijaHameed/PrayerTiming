@@ -1,4 +1,4 @@
-package com.sixlogs.homeq.applicationsetting
+package com.sixlogs.pt.applicationsetting
 
 import android.app.Activity
 import com.sixlogs.pt.storage.PTPreferences
@@ -10,6 +10,7 @@ class ApplicationSetting(activity: Activity?) {
     companion object {
         const val DUMMY = "test"
         const val FAJAR = "fajar"
+        const val SUNRISE = "sunrise"
         const val DUHAR = "duhar"
         const val ASAR = "asar"
         const val MAGHRIB = "maghrib"

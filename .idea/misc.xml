@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/drawable/bg_outline_green.xml" value="0.2745" />
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/drawable/ic_home.xml" value="0.241" />
+        <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/drawable/ic_retey.xml" value="0.323" />
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/font/akaya_telivigala.xml" value="0.21197916666666666" />
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/font/lovers_quarrel.xml" value="0.30572916666666666" />
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/layout/activity_main.xml" value="0.23072916666666668" />
@@ -12,7 +13,7 @@
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/layout/fragment_qaza_prayer.xml" value="0.23072916666666668" />
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/layout/fragment_tasbeehat.xml" value="0.31614583333333335" />
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/layout/fragment_tasbeehat_prayer.xml" value="0.23072916666666668" />
-        <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/layout/fragment_today_prayer.xml" value="0.25" />
+        <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/layout/fragment_today_prayer.xml" value="0.22" />
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/layout/slider_layout.xml" value="0.31614583333333335" />
         <entry key="..\:/Projects/Android Projects/test/PT/app/src/main/res/menu/bottom_menu.xml" value="0.23072916666666668" />
       </map>

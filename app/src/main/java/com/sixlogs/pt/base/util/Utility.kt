@@ -2,6 +2,9 @@ package com.sixlogs.pt.base.util
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
@@ -18,7 +21,7 @@ fun alertDialog(activity: Activity, message: String, title: String) {
 
     val dialog: androidx.appcompat.app.AlertDialog? =
         MaterialAlertDialogBuilder(activity, R.style.MaterialAlertDialogText)
-            .setTitle("HomeQ")
+            .setTitle("Prayers Timing")
             .setMessage(message)
             .setPositiveButton("OK") { dialog, which ->
                 // Respond to positive button press
@@ -44,4 +47,24 @@ fun alertDialog(activity: Activity, message: String, title: String) {
 
 
     }
+}
+
+
+
+fun checkInternetConnection(context: Context): Boolean {
+    val connectivity = context
+        .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    if (connectivity == null) {
+        return false
+    } else {
+        val info = connectivity.allNetworkInfo
+        if (info != null) {
+            for (i in info.indices) {
+                if (info[i].state == NetworkInfo.State.CONNECTED) {
+                    return true
+                }
+            }
+        }
+    }
+    return false
 }

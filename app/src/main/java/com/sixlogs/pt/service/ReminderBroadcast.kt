@@ -12,11 +12,12 @@ class ReminderBroadcast : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
 
       var time = " ${intent?.getStringExtra("pt")}"
+      var date = " ${intent?.getStringExtra("dt")}"
 
       //    if (time == "fajr") {
         val _notificationUtils = NotificationUtils(context)
-            val _builder = _notificationUtils.setNotification("Testing",
-                "$time ==${intent?.getStringExtra("count")}")
+            val _builder = _notificationUtils.setNotification("Testing   ==${intent?.getStringExtra("count")}",
+                "$time$date")
             _notificationUtils.getManager()!!.notify(110, _builder!!.build())
 
 //        val intent_id = System.currentTimeMillis().toInt()

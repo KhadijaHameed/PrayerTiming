@@ -12,9 +12,12 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.work.*
-import com.sixlogs.homeq.applicationsetting.ApplicationSetting
-import com.sixlogs.pt.MainActivity
+import com.sixlogs.pt.activity.MainActivity
+import com.sixlogs.pt.R
+import com.sixlogs.pt.applicationsetting.ApplicationSetting
 import com.sixlogs.pt.base.BaseFragment
+import com.sixlogs.pt.base.util.alertDialog
+import com.sixlogs.pt.base.util.checkInternetConnection
 import com.sixlogs.pt.base.util.requestFailed
 import com.sixlogs.pt.data.network.TodayPrayerAPI
 import com.sixlogs.pt.data.remoteRepo.AuthRepository
@@ -23,10 +26,15 @@ import com.sixlogs.pt.data.request.todayprayer.Timings
 import com.sixlogs.pt.data.request.todayprayer.TodayPrayerRes
 import com.sixlogs.pt.databinding.FragmentTodayPrayerBinding
 import com.sixlogs.pt.service.PTService
+import com.sixlogs.pt.storage.PTDatabase
 import com.sixlogs.pt.storage.PTPreferences
+import com.sixlogs.pt.storage.dao.QazaPrayerDao
+import com.sixlogs.pt.storage.entities.QazaPrayerEntities
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TodayPrayerTiming :
     BaseFragment<FragmentTodayPrayerBinding, TodayPrayerTimingViewModel, AuthRepository>(),
@@ -34,7 +42,12 @@ class TodayPrayerTiming :
 
     private lateinit var navController: NavController
     val TAG = "PT"
+    private lateinit var db: PTDatabase
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        db = PTDatabase.getAppDatabase(requireContext())
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         try {
@@ -45,11 +58,12 @@ class TodayPrayerTiming :
         } catch (e: Exception) {
         }
         initUI(view)
-
+        setListeners()
 
         sendTimeRequest()
         viewModel.todayRes.observe(viewLifecycleOwner, Observer {
             binding.sk.visibility = GONE
+            binding.ivRetry.visibility = GONE
             when (it) {
                 is Resource.Success -> {
                     Log.d("test", "code ${it.value.code} ${it.value.data}")
@@ -61,15 +75,66 @@ class TodayPrayerTiming :
 
                 }
             }
-            /*  }else{
-                  Log.d("test", "code error   ${it.data.toString()}")
-              }*/
         })
+
+
+        addColumnForTodayInDB()
+    }
+
+    private fun addColumnForTodayInDB(){
+     //   val gymBDatabase = PTDatabase.getAppDatabase(requireContext())
+        val qazaPrayerDaoDao: QazaPrayerDao = db.qazaPrayerDao()
+        val todayEntry = QazaPrayerEntities(0, getTodayDate(),false,false,false,false,false)
+        qazaPrayerDaoDao.insertPrayer(todayEntry)
 
     }
 
+
+    private fun getTodayDate(): String {
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        // val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val currentDate = sdf.format(Date())
+        Log.d("test", "TodayDate  $currentDate")
+        return currentDate
+    }
+
+
+    private fun setListeners() {
+        binding.ivRetry.setOnClickListener(this)
+    }
+
     private fun sendTimeRequest() {
-        viewModel.getTodays()
+        if (checkInternetConnection(this.requireContext())) {
+            viewModel.getTodays()
+        } else {
+            setTimeFromPref()
+        }
+    }
+
+    private fun setTimeFromPref() {
+        binding.sk.visibility = GONE
+        binding.ivRetry.visibility = VISIBLE
+        alertDialog(requireActivity(), resources.getString(R.string.internnetConnectionDialog), "Error")
+        val fjr = PTPreferences(requireContext()).getStringValue(ApplicationSetting.FAJAR)
+        val sunRise = PTPreferences(requireContext()).getStringValue(ApplicationSetting.SUNRISE)
+        val duhar = PTPreferences(requireContext()).getStringValue(ApplicationSetting.DUHAR)
+        val asar = PTPreferences(requireContext()).getStringValue(ApplicationSetting.ASAR)
+        val maghrib = PTPreferences(requireContext()).getStringValue(ApplicationSetting.MAGHRIB)
+        val isha = PTPreferences(requireContext()).getStringValue(ApplicationSetting.ISHA)
+
+        binding.fajrrTime.text = fjr
+        binding.sunriseTime.text = sunRise
+        binding.dhuhrTime.text = duhar
+        binding.asrTime.text = asar
+        binding.maghribTime.text = maghrib
+        binding.ishaTime.text = isha
+        binding.todayHijriDate.text = ""
+        binding.todayEnDate.text = ""
+
+        GlobalScope.launch {
+            check(TAG)
+        }
+
     }
 
 
@@ -85,28 +150,11 @@ class TodayPrayerTiming :
             val hijri = " $day $month $year"
             binding.todayHijriDate.text = "\uD83C\uDF19$hijri"
             binding.todayEnDate.text = "~${response.data.date.readable}~"
-            setTime(namazTimeLists)
+            setTimeFromAPI(namazTimeLists)
 
 
 
         }
-        /* val userId = ApplicationSetting(requireActivity()).getUserId()
-
-         val cardDetail: GetCardDetailResponse = value
-
-         if (cardDetail != null) {
-             val cardDetailEntity = CardDetailsEntity(
-                 0,
-                 userId!!.toInt(),
-                 cardDetail.brand,
-                 cardDetail.cardId,
-                 cardDetail.expirationMonth,
-                 cardDetail.expirationYear,
-                 cardDetail.last4)
-             val database = HomeQDatabase.getAppDatabase(requireContext())
-             database.cardDetailDao().insertCardDetails(cardDetailEntity)
-
-         }*/
     }
 
 
@@ -145,7 +193,7 @@ class TodayPrayerTiming :
     }
 
 
-    private fun setTime(time: Timings) {
+    private fun setTimeFromAPI(time: Timings) {
         binding.fajrrTime.text = time.Fajr
         binding.sunriseTime.text = time.Sunrise
         binding.dhuhrTime.text = time.Dhuhr
@@ -154,18 +202,18 @@ class TodayPrayerTiming :
         binding.ishaTime.text = time.Isha
 
         //add into preferences
-        PTPreferences(requireContext()).setStringValue(ApplicationSetting.FAJAR, time.Fajr)
+   /*     PTPreferences(requireContext()).setStringValue(ApplicationSetting.FAJAR, time.Fajr)
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.SUNRISE, time.Sunrise)
         PTPreferences(requireContext()).setStringValue(ApplicationSetting.DUHAR, time.Dhuhr)
         PTPreferences(requireContext()).setStringValue(ApplicationSetting.ASAR, time.Asr)
         PTPreferences(requireContext()).setStringValue(ApplicationSetting.MAGHRIB, time.Maghrib)
         PTPreferences(requireContext()).setStringValue(ApplicationSetting.ISHA, time.Isha)
-
-    /*
-        PTPreferences(requireContext()).setStringValue(ApplicationSetting.FAJAR, "17:30")
-        PTPreferences(requireContext()).setStringValue(ApplicationSetting.DUHAR, "17:31")
-        PTPreferences(requireContext()).setStringValue(ApplicationSetting.ASAR, "17:32")
-        PTPreferences(requireContext()).setStringValue(ApplicationSetting.MAGHRIB, "17:33")
-        PTPreferences(requireContext()).setStringValue(ApplicationSetting.ISHA, "17:34")*/
+*/
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.FAJAR, "12:8")
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.DUHAR, "12:9")
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.ASAR, "12:10")
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.MAGHRIB, "12:11")
+        PTPreferences(requireContext()).setStringValue(ApplicationSetting.ISHA, "12:12")
 
 
         GlobalScope.launch {
@@ -185,9 +233,9 @@ class TodayPrayerTiming :
 
     override fun onClick(v: View) {
         when (v.id) {
-            // R.id.menu_bar -> {
-            // setFragmentResult("position", bundleOf("ind" to 0))
-            //  }
+             R.id.iv_retry-> {
+                 sendTimeRequest()
+              }
         }
     }
 

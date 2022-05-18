@@ -3,7 +3,7 @@ package com.sixlogs.pt.activity.splash
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import com.sixlogs.pt.MainActivity
+import com.sixlogs.pt.activity.MainActivity
 import com.sixlogs.pt.base.BaseActivity
 import com.sixlogs.pt.data.network.TodayPrayerAPI
 import com.sixlogs.pt.data.remoteRepo.AuthRepository

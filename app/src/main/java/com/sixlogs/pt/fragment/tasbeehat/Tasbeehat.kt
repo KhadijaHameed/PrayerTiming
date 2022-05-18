@@ -7,7 +7,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.sixlogs.pt.MainActivity
+import com.sixlogs.pt.activity.MainActivity
 import com.sixlogs.pt.R
 import com.sixlogs.pt.activity.model.SliderData
 import com.sixlogs.pt.adapter.SliderAdapter

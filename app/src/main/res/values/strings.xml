@@ -9,5 +9,6 @@
     <string name="isha">Isha</string>
     <string name="today_prayers">Today\'s Prayers</string>
     <string name="internnetConnection">Internet not connected..</string>
+    <string name="internnetConnectionDialog">Internet not connected.. \n For updated timings, make sure your internet is connected</string>
     <string name="today">Today  </string>
 </resources>

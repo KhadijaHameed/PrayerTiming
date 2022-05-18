@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
     <!--android:fitsSystemWindows="true"-->
 
     <fragment
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_menu"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:itemIconTint="@color/bnv_tab_item_foreground"
                 app:itemTextColor="@color/bnv_tab_item_foreground"/>
 

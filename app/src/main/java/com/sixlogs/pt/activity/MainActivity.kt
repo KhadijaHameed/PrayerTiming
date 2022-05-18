@@ -1,5 +1,6 @@
-package com.sixlogs.pt
+package com.sixlogs.pt.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,21 +11,13 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.work.*
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.sixlogs.homeq.applicationsetting.ApplicationSetting
+import com.sixlogs.pt.MainActivityViewModel
+import com.sixlogs.pt.R
 import com.sixlogs.pt.base.BaseActivity
 import com.sixlogs.pt.data.network.TodayPrayerAPI
 import com.sixlogs.pt.data.remoteRepo.AuthRepository
 import com.sixlogs.pt.databinding.ActivityMainBinding
-import com.sixlogs.pt.service.NotificationUtils
-import com.sixlogs.pt.service.PTService
-import com.sixlogs.pt.storage.PTPreferences
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.util.*
-import java.util.concurrent.TimeUnit
-
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, AuthRepository>(){
 
@@ -32,8 +25,27 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, Au
     private lateinit var navController: NavController
     lateinit var bottomAppBar: BottomAppBar
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent != null) {
+            if(intent.extras!=null){
+                val prayer = intent?.getStringExtra("Pr")
+                Log.d("testing", "prayer $prayer")
+            }else{
+                Log.d("testing", "extras null")
+
+            }
+        }else{
+            Log.d("testing", "intent null")
+
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        onNewIntent(intent)
 
         initUI()
         navigationTextFont(binding.bottomNavigation)
@@ -41,7 +53,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, Au
        // reminderNotification()
 
 
+
     }
+
+
 
 
 
@@ -86,7 +101,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel, Au
                 navigationTextFont(child)
             }
         } else if (view is TextView) {
-              view.typeface = ResourcesCompat.getFont(this,R.font.akaya_telivigala)
+              view.typeface = ResourcesCompat.getFont(this, R.font.akaya_telivigala)
         }
     }
 

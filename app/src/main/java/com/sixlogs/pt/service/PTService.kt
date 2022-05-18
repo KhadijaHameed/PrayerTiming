@@ -10,9 +10,9 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.sixlogs.homeq.applicationsetting.ApplicationSetting
-import com.sixlogs.pt.MainActivity
+import com.sixlogs.pt.activity.MainActivity
 import com.sixlogs.pt.R
+import com.sixlogs.pt.applicationsetting.ApplicationSetting
 import com.sixlogs.pt.storage.PTPreferences
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.GlobalScope
@@ -40,7 +40,7 @@ class PTService(
         try {
             GlobalScope.launch {
                 async(start = CoroutineStart.LAZY) {
-                    getDbRecord()
+                    getRecord()
                 }.start()
 
             }
@@ -53,7 +53,7 @@ class PTService(
 
     @Throws(IOException::class)
     @Synchronized
-    suspend fun getDbRecord() {
+    suspend fun getRecord() {
 
         //5 times
         var fjr = PTPreferences(context).getStringValue(ApplicationSetting.FAJAR)
@@ -92,6 +92,7 @@ class PTService(
         reminderNotification()
 
     }
+
 
 //    val hourList = arrayListOf(16,16,16,16,16)
 //    val mintList = arrayListOf(54,55,56,57,58)

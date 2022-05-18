@@ -7,10 +7,9 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.sixlogs.pt.MainActivity
+import com.sixlogs.pt.activity.MainActivity
 import java.util.*
 
 
@@ -29,6 +28,10 @@ class NotificationUtils(base: Context?) : ContextWrapper(base) {
 
 
         val alarmIntent  = Intent(applicationContext, MainActivity::class.java)
+
+        alarmIntent.putExtra("Prayer", ""+body?.split("!!")?.get(0))
+        alarmIntent.putExtra("Date", ""+body?.split("!!")?.get(1))
+
         val  p_i_1 = PendingIntent.getActivity(applicationContext, 12, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         return NotificationCompat.Builder(this, "1")
@@ -70,6 +73,7 @@ class NotificationUtils(base: Context?) : ContextWrapper(base) {
         val alarmIntent  = Intent(applicationContext, ReminderBroadcast::class.java)
         alarmIntent.putExtra("count","mint:$m sec$s ")
         alarmIntent.putExtra("pt",nmzName)
+        alarmIntent.putExtra("dt",nmzName)
         val pendingIntent1 = PendingIntent.getBroadcast(applicationContext, reqCode, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmIntent.data = (Uri.parse("custom://"+System.currentTimeMillis()));
 
