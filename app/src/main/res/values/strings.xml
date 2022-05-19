@@ -11,4 +11,5 @@
     <string name="internnetConnection">Internet not connected..</string>
     <string name="internnetConnectionDialog">Internet not connected.. \n For updated timings, make sure your internet is connected</string>
     <string name="today">Today  </string>
+    <string name="qaza_prayer">Qaza Prayers</string>
 </resources>

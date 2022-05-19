@@ -17,11 +17,11 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.PT"
         tools:targetApi="m">
-        <activity android:name=".activity.splash.Splash"
+        <activity android:name=".activity.MainActivity"
             android:theme="@style/AppTheme" >
         </activity>
 
-        <activity android:name=".activity.MainActivity"
+        <activity android:name=".activity.splash.Splash"
             android:exported="true"
             android:theme="@style/AppTheme" >
             <intent-filter>

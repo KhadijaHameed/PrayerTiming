@@ -3,6 +3,7 @@ package com.sixlogs.pt.storage.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.sixlogs.pt.model.QazaPrayerModel
 import com.sixlogs.pt.storage.entities.QazaPrayerEntities
 
 @Dao
@@ -12,8 +13,8 @@ interface QazaPrayerDao{
     @Insert()
     fun insertPrayer(vararg data: QazaPrayerEntities)
 
-//    @Query("UPDATE excercisedays SET beginner =:stepDone WHERE excerciseStep = :step AND day = :date_  ")
-//    fun updateBeginnerStep( stepDone: Boolean?, step: String,  date_: String)
+    @Query("SELECT * FROM qazaPrayers")
+    fun getAllQazaPrayer(): List<QazaPrayerModel>
 
 //    @Query("INSERT INTO qazaPrayers VALUES(0,date_,0,0,0,0,0)")
    // @Query("INSER qazaPrayers SET fajar =:Done WHERE  date = :date_ ")

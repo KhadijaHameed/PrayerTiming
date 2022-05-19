@@ -9,7 +9,11 @@
     <fragment
         android:id="@+id/todayPrayerTiming"
         android:name="com.sixlogs.pt.fragment.todayPrayer.TodayPrayerTiming"
-        android:label="TodayPrayerTiming" />
+        android:label="TodayPrayerTiming" >
+        <action
+            android:id="@+id/action_todayPrayerTiming_to_qazaPrayersRecords"
+            app:destination="@id/qazaPrayersRecords" />
+    </fragment>
     <fragment
         android:id="@+id/qazaPrayersRecords"
         android:name="com.sixlogs.pt.fragment.qazaPrayersRecords.QazaPrayersRecords"

@@ -31,7 +31,7 @@ abstract class PTDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(this) {
                     INSTANCE = Room.databaseBuilder<PTDatabase>(
-                        context.applicationContext, PTDatabase::class.java, "HomeQDb2"
+                        context.applicationContext, PTDatabase::class.java, "PrayerDB"
                     )
                         .addMigrations(migration_1_2)
                         .allowMainThreadQueries().build()

@@ -83,10 +83,18 @@ class TodayPrayerTiming :
 
     private fun addColumnForTodayInDB(){
      //   val gymBDatabase = PTDatabase.getAppDatabase(requireContext())
-        val qazaPrayerDaoDao: QazaPrayerDao = db.qazaPrayerDao()
-        val todayEntry = QazaPrayerEntities(0, getTodayDate(),false,false,false,false,false)
-        qazaPrayerDaoDao.insertPrayer(todayEntry)
 
+        //add onyl once
+    /*  var dateListDummy  = arrayListOf<String>("13/05/2022","14/05/2022","15/05/2022","16/05/2022","17/05/2022","18/05/2022","19/05/2022")
+            for (i in 0 until 7){
+            val qazaPrayerDaoDao: QazaPrayerDao = db.qazaPrayerDao()
+            val todayEntry = QazaPrayerEntities(0, dateListDummy.get(i),true,true,false,false,true)
+            qazaPrayerDaoDao.insertPrayer(todayEntry)
+        }*/
+   /*  val qazaPrayerDaoDao: QazaPrayerDao = db.qazaPrayerDao()
+        val todayEntry = QazaPrayerEntities(0, getTodayDate(),true,true,false,false,false)
+        qazaPrayerDaoDao.insertPrayer(todayEntry)
+*/
     }
 
 
